@@ -42,4 +42,6 @@ miner这个名字是后来改的，开始的时候我直接称之为rssreader4j�
 * 服务器 or 其他一切可以运行java程序的地方
 * tomcat7
 * mysql 5.0
-* myeclipse (安装好maven？请继续：[看这里](http://blog.zhangyingwei.com/categories/maven/))
+* myeclipse (安装好maven?请继续:[看这里](http://blog.zhangyingwei.com/categories/maven/))
+
+
