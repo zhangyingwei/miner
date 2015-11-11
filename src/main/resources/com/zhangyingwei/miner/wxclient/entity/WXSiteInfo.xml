@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.zhangyingwei.miner.wxclient.dao.WXInfoDao">
+    <select id="findByPage"  resultType="com.zhangyingwei.miner.wxclient.entity.WXSiteInfo">
+        select * from t_wx_site order by id desc limit #{begin},#{pageSize}
+    </select>
+    
+    <select id="getCount" resultType="java.lang.Integer">
+    	select count(*) from t_wx_site
+    </select>
+    
+    <insert id="saveWXSiteInfo" parameterType="com.zhangyingwei.miner.wxclient.entity.WXSiteInfo">
+    	insert into t_wx_site (wxcode,wxname,description,url,openid,ext,page,cb,gzhArtKeyWord,updatetime) values(#{wxcode},#{wxname},#{description},#{url},#{openid},#{ext},#{page},#{cb},#{gzhArtKeyWord},#{updatetime})
+    </insert>
+    
+    <delete id="delWXSiteInfo" parameterType="java.lang.String">
+    	delete from t_wx_site where id=#{id}
+    </delete>
+    
+</mapper>

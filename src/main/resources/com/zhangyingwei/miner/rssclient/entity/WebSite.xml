@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.zhangyingwei.miner.rssclient.dao.WebSiteDao">
+    <select id="queryWebSites"  resultType="com.zhangyingwei.miner.rssclient.entity.WebSite">
+        select * from t_rss_website order by id desc limit #{begin},#{pageSize}
+    </select>
+    
+    <select id="queryAllWebSites"  resultType="com.zhangyingwei.miner.rssclient.entity.WebSite">
+        select * from t_rss_website
+    </select>
+    
+    <select id="getCount" resultType="java.lang.Integer">
+    	select count(*) from t_rss_website
+    </select>
+    
+    <select id="findByWenSite" resultType="com.zhangyingwei.miner.rssclient.entity.WebSite">
+    	select * from t_rss_website where websitelink=#{websitelink}
+    </select>
+    
+    <insert id="addWebSite" parameterType="com.zhangyingwei.miner.rssclient.entity.WebSite">
+    	insert into t_rss_website (websitelink,title,link,updated,description) values(#{websitelink},#{title},#{link},#{updated},#{description});
+    </insert>
+    <delete id="deleteSite" parameterType="com.zhangyingwei.miner.rssclient.entity.WebSite">
+    	delete from t_rss_website where websitelink=#{websitelink}
+    </delete>
+</mapper>

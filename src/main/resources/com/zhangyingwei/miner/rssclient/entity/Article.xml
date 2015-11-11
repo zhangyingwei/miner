@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.zhangyingwei.miner.common.dao.ArticleDao">
+    <select id="queryArticle"  resultType="com.zhangyingwei.miner.common.entity.Article">
+        select * from t_rss_article where delflag=0 order by id desc limit #{begin},#{pageSize}
+    </select>
+    
+    <select id="getCount" resultType="java.lang.Integer">
+    	select count(*) from t_rss_article where delflag=0
+    </select>
+    
+    <select id="queryArticleByPar" resultType="com.zhangyingwei.miner.common.entity.Article">
+    	select * from t_rss_article where (slink=#{slink} or stitle=#{stitle}) and (elink=#{elink} or etitle=#{etitle})
+    </select>
+    
+    <update id="deleteArticle" parameterType="java.lang.String">
+    	update t_rss_article set delflag='1' where elink=#{elink}
+    </update>
+    
+    <insert id="saveArticle" parameterType="com.zhangyingwei.miner.common.entity.Article">
+    	insert into t_rss_article (stitle,slink,supdated,etitle,elink,epublished,edescription,delflag) 
+    	values(#{stitle},#{slink},#{supdated},#{etitle},#{elink},#{epublished},#{edescription},"0")
+    </insert>
+</mapper>
