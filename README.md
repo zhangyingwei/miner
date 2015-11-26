@@ -56,7 +56,8 @@ miner.sql里边是所有表的ddl
 * 进入路径 miner/WEB-INF/classes
 * 打开conf.properties配置文件配置数据库信息
 * 打开mail.properties配置文件配置邮箱信息，其中有发送邮件的邮箱账号密码，接收邮件的邮箱账号密码（发送邮件的邮箱必须开启SMTP、POP3等服务）
+* 重启tomcat服务器，并登录:http://url:port/miner(例如：http://localhost:8080/miner)
 收到的邮件是酱紫的
 ![](http://7vzt96.com1.z0.glb.clouddn.com/miner_0044.png)
-* 重启tomcat服务器，并登录:http://url:port/miner(例如：http://localhost:8080/miner)
+
 ###OK

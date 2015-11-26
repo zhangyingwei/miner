@@ -1,6 +1,6 @@
 package com.zhangyingwei.miner.wxclient.entity;
 
-import com.zhangyingwei.entity.WXInfo;
+import com.zhangyingwei.wxreader.entity.WXInfo;
 
 public class WXSiteInfo {
 	public Integer id;

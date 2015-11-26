@@ -1,8 +1,9 @@
-<%@ page language="java" import="java.util.*,com.zhangyingwei.miner.rssclient.entity.User" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" isELIgnored="false"%>
+<%@ page language="java" import="java.util.*,com.zhangyingwei.miner.rssclient.entity.User,com.zhangyingwei.miner.common.util.TokenUtil" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" isELIgnored="false"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 User user = (User)session.getAttribute("logonuser");
+String tokenstr = TokenUtil.TOKEN_KEY+"="+session.getAttribute(TokenUtil.TOKEN_KEY);
 %>
 
 <!DOCTYPE html>
@@ -66,7 +67,7 @@ User user = (User)session.getAttribute("logonuser");
 							</a>
 							<ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
 								<li>
-									<a href="/rssreader4j"><i class="icon-off"></i>退出</a>
+									<a href="logout.do"><i class="icon-off"></i>退出</a>
 								</li>
 							</ul>
 						</li>
@@ -107,7 +108,10 @@ User user = (User)session.getAttribute("logonuser");
 							</a>
 							<ul class="submenu">
 								<li>
-									<a href="weblist.do" target="sonwin"><i class="icon-double-angle-right"></i>RSS订阅管理</a>
+									<a href="weblist.do?<%=tokenstr %>" target="sonwin"><i class="icon-double-angle-right"></i>RSS订阅管理</a>
+								</li>
+								<li style="display:none">
+									<a href="wxweblist.do?<%=tokenstr %>" target="sonwin"><i class="icon-double-angle-right"></i>微信公众号订阅管理</a>
 								</li>
 							</ul>
 						</li>
@@ -122,7 +126,10 @@ User user = (User)session.getAttribute("logonuser");
 
 							<ul class="submenu">
 								<li>
-									<a href="articlelist.do" target="sonwin"><i class="icon-double-angle-right"></i>RSS阅读列表</a>
+									<a href="articlelist.do?<%=tokenstr %>" target="sonwin"><i class="icon-double-angle-right"></i>RSS阅读列表</a>
+								</li>
+								<li style="display:none">
+									<a href="wxmessagelist.do?<%=tokenstr %>" target="sonwin"><i class="icon-double-angle-right"></i>微信公众号阅读列表</a>
 								</li>
 							</ul>
 						</li>
@@ -138,7 +145,7 @@ User user = (User)session.getAttribute("logonuser");
 				</div>
 
 				<div class="main-content">
-					<iframe id="sonwin" name="sonwin" src="mainshow.do" style="width:100%;height:100%;border:0;" scrolling="auto" >
+					<iframe id="sonwin" name="sonwin" src="mainshow.do?<%=tokenstr %>" style="width:100%;height:100%;border:0;" scrolling="auto" >
 					</iframe>
 				</div><!-- /.main-content -->
 

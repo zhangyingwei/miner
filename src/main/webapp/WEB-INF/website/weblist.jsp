@@ -1,10 +1,11 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" isELIgnored="false"%>
+<%@ page language="java" import="java.util.*,com.zhangyingwei.miner.common.util.TokenUtil" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+String tokenstr = TokenUtil.TOKEN_KEY+"="+session.getAttribute(TokenUtil.TOKEN_KEY);
 %>
 
 <!DOCTYPE html>
@@ -56,6 +57,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <![endif]-->
 </head>
 <body style="background:#fff;">
+	<div style="display:none" id="tokenstr"><%=tokenstr %></div>
 	<div style="height:40px;">
 		<div class="visible-md visible-lg hidden-sm btn-group" style="float:right; width:100%;">
 	    	<button class="btn btn-success" id="bootbox-regular" style="height:40px;width:100%;"><span style="margin-right:2em;font-weight:bold;">当前总数: ${pageinfo.total}</span><i class="icon-zoom-in bigger-130"></i></button>
@@ -113,6 +115,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!-- inline scripts related to this page -->
     <script type="text/javascript">
 	    jQuery(function($){
+	    	var tokenstr = $("#tokenstr").text();
 	    	$("#bootbox-regular").on(ace.click_event, function(data) {
 				bootbox.prompt("<i class='icon-edit'></i>请输入RSS地址",function(result) {
 					if (result === null|| result.length===0) {
@@ -122,13 +125,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						mask.show();
 						$.ajax({
 							type:'POST',
-							url:'webadd.do',
+							url:'webadd.do?'+tokenstr,
 							data:{'data':result},
 							dataType:'json',
 							success:function(data){
 								showSuccMsg("提示",data.message,null,function(){
 									mask.hide();
-									location.href="weblist.do";
+									location.href="weblist.do?"+tokenstr;
+								});
+							},
+							error:function(){
+								showSuccMsg("提示","添加失败",null,function(){
+									mask.hide();
 								});
 							}
 						});
@@ -142,11 +150,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    			var website = $(this).parent().parent().prev().children().text();
 	    			$.ajax({
 	    				type:'POST',
-	    				url:'webdel.do',
+	    				url:'webdel.do?'+tokenstr,
 	    				dataType:'json',
 	    				data:{'website':website},
 	    				success:function(data){
-	    					showSuccMsg("提示",data.message,null,function(){location.href="weblist.do"});
+	    					showSuccMsg("提示",data.message,null,function(){location.href="weblist.do?"+tokenstr});
 	    				}
 	    			});
 	    		})
@@ -154,7 +162,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    	
 	    	$(".pagination").find("li").each(function(){
 				$(this).click(function(){
-					location.href="weblist.do?currentPage="+$(this).find("a").text();
+					location.href="weblist.do?currentPage="+$(this).find("a").text()+"&"+tokenstr;
 				});
 			});
 	    })

@@ -2,12 +2,16 @@ package com.zhangyingwei.miner.wx;
 
 import java.util.List;
 
-import com.zhangyingwei.entity.WXInfo;
-import com.zhangyingwei.handler.WXHandler;
+import com.zhangyingwei.wxreader.entity.WXInfo;
+import com.zhangyingwei.wxreader.entity.WXMessage;
+import com.zhangyingwei.wxreader.handler.WXHandler;
 
 public class WXTest {
 	public static void main(String[] args) {
-		List<WXInfo> wxinfos = WXHandler.getWxInfo("开源中国");
+		List<WXInfo> wxinfos = WXHandler.getWxInfo("鑰冪爺涓撴湁鍔╂墜");
 		System.out.println(wxinfos);
+		
+//		WXMessage wxMessage = WXHandler.getWxMessages(WXHandler.getWxInfo("鑰冪爺涓撴湁鍔╂墜").get(0)).get(0);
+//		System.out.println(wxMessage);
 	}
 }

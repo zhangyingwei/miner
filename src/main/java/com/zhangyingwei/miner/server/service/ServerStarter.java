@@ -23,7 +23,7 @@ public class ServerStarter{
 				Properties properties = PropertielUtil.loadProperties("sever.properties");
 				Integer autorun = Integer.parseInt(properties.getProperty("server.autorun"));
 				String timerun = properties.getProperty("server.runtime");
-				List timeruns = new ArrayList();;
+				List timeruns = new ArrayList();
 				if(timerun==null||timerun.trim().length()==0){
 					timeruns.add(7);
 				}else{

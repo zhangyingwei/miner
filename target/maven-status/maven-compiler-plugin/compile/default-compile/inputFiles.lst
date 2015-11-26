@@ -33,6 +33,7 @@ D:\MyEclipseWorkspace\miner\src\main\java\com\zhangyingwei\miner\common\entity\P
 D:\MyEclipseWorkspace\miner\src\main\java\com\zhangyingwei\miner\wxclient\entity\WXSiteInfo.java
 D:\MyEclipseWorkspace\miner\src\main\java\com\zhangyingwei\miner\common\util\ServiceReturn.java
 D:\MyEclipseWorkspace\miner\src\main\java\com\zhangyingwei\miner\server\service\ServerStarter.java
+D:\MyEclipseWorkspace\miner\src\main\java\com\zhangyingwei\miner\common\listener\ApplicationContextListener.java
 D:\MyEclipseWorkspace\miner\src\main\java\com\zhangyingwei\miner\wxclient\controller\WXArticleController.java
 D:\MyEclipseWorkspace\miner\src\main\java\com\zhangyingwei\miner\wxclient\service\WXMessageService.java
 D:\MyEclipseWorkspace\miner\src\main\java\com\zhangyingwei\miner\rssclient\dao\UserDao.java

@@ -2,7 +2,7 @@ package com.zhangyingwei.miner.wxclient.util;
 
 import java.util.List;
 
-import com.zhangyingwei.entity.WXInfo;
+import com.zhangyingwei.wxreader.entity.WXInfo;
 import com.zhangyingwei.miner.wxclient.entity.WXSiteInfo;
 
 public class WXUtil {

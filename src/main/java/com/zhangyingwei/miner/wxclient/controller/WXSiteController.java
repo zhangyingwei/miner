@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.zhangyingwei.entity.WXInfo;
-import com.zhangyingwei.handler.WXHandler;
+import com.zhangyingwei.wxreader.entity.WXInfo;
+import com.zhangyingwei.wxreader.handler.WXHandler;
 import com.zhangyingwei.miner.common.util.ResultData;
 import com.zhangyingwei.miner.common.util.ServiceReturn;
 import com.zhangyingwei.miner.common.entity.PageInfo;

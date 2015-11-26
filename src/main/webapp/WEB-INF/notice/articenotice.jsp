@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"
+<%@ page language="java" import="java.util.*,com.zhangyingwei.miner.common.util.TokenUtil" pageEncoding="UTF-8"
 	contentType="text/html; charset=UTF-8" isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -8,6 +8,7 @@
 	String basePath = request.getScheme() + "://"
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
+	String tokenstr = TokenUtil.TOKEN_KEY+"="+session.getAttribute(TokenUtil.TOKEN_KEY);
 %>
 
 <!DOCTYPE html>
@@ -76,6 +77,7 @@
 </style>
 </head>
 <body>
+	<div style="display:none" id="tokenstr"><%=tokenstr %></div>
 	<div class="breadcrumbs" id="breadcrumbs">
 		<div class="visible-md visible-lg hidden-sm btn-group"
 			style="padding:0 10px;">
@@ -83,6 +85,7 @@
 				class="badge badge-danger">${pageinfo.total }</span>篇未读文章...
 		</div>
 	</div>
+	<div id="loadimg" class="loadwrap"><img src="images/loading.gif" /></div>
 	<div class="page-content">
 		<c:forEach items="${articles }" var="article">
 				<div class="widget-container-span" style="width:23%; float:left; margin:1%; display:none;">
@@ -128,7 +131,8 @@
 	<!-- inline scripts related to this page -->
 	<script type="text/javascript">
 		jQuery(function($) {
-			$("#loadimg").hide();
+			
+			var tokenstr = $("#tokenstr").text();
 			
 			$(".notintr").click(function() {
 				//alert('不感兴趣');
@@ -147,6 +151,8 @@
 				$(this).text(subString(text, 10));
 			});
 			
+			$("#loadimg").hide();
+			
 			//截取简介内容
 			$(".alert-info").each(function(){
 				var text = $(this).text();
@@ -164,7 +170,7 @@
 
 			$(".pagination").find("li").each(function(){
 				$(this).click(function(){
-					location.href="articlelist.do?currentPage="+$(this).find("a").text();
+					location.href="articlelist.do?currentPage="+$(this).find("a").text()+"&"+tokenstr;
 				});
 			});
 			
@@ -188,11 +194,11 @@
 					data:{'elink':elink},
 					success:function(data){
 						console.log(data.message);
-						location.href="articlelist.do";
+						location.href="articlelist.do?"+tokenstr;
 					},
 					error:function(data){
 						console.log("err");
-						location.href="articlelist.do";
+						location.href="articlelist.do?"+tokenstr;
 					}
 				});
 			}
@@ -206,7 +212,6 @@
 			}
 		})
 	</script>
-	<div id="loadimg" class="loadwrap"><img src="images/loading.gif" /></div>
 	<!-- <script type="text/javascript" src="js/flow-box.js"></script> -->
 </body>
 </html>

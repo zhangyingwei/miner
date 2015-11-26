@@ -57,10 +57,30 @@
     <!-- 开启RequestMapping注解 -->
     <mvc:annotation-driven />
     
+    <mvc:interceptors>
+    	<bean class="com.zhangyingwei.miner.rssclient.common.ClientInterceptor" />
+    	<mvc:interceptor>
+    		<mvc:mapping path="*.do"/>
+    		<bean class="com.zhangyingwei.miner.rssclient.common.ClientInterceptor" />
+    	</mvc:interceptor>
+    </mvc:interceptors>
+    
     <!-- 处理请求转发 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
     	<property name="prefix" value="/WEB-INF/" />
     	<property name="suffix" value=".jsp" />
+    </bean>
+    
+    <!--定义异常处理页面-->
+    <bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <prop key="java.sql.SQLException">err/exceptionpage</prop>
+                <prop key="java.io.IOException">err/exceptionpage</prop>
+                <prop key="javax.crypto.IllegalBlockSizeException">err/exceptionpage</prop>
+                <prop key="java.lang.NoSuchMethodError">err/exceptionpage</prop>
+            </props>
+        </property>
     </bean>
     
 </beans>

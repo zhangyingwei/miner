@@ -70,4 +70,11 @@ public class User implements Serializable{
 		return "User [userid=" + userid + ", username=" + username
 				+ ", passwd=" + passwd + "]";
 	}
+	
+	public boolean isNull(){
+		if(this.getUsername()==null&&this.getPasswd()==null){
+			return true;
+		}
+		return false;
+	}
 }

@@ -25,7 +25,7 @@
 	<div id="message" style="display:none">${message }</div>
 	<div class="LoginWindow">
 		<div>
-			<form method="post" action="login.do" onsubmit="return user_input()"
+			<form method="post" action="miner.do" onsubmit="return user_input()"
 				class="login">
 				<p><label for="login">帐号:</label> <input type="text" name="username" id="id"value=""></p>
 				<p><label for="password">密码:</label> <input type="password" name="passwd" id="password" value=""></p>

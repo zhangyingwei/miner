@@ -6,7 +6,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.zhangyingwei.miner.rssclient.dao.WebSiteDao;
 import com.zhangyingwei.miner.rssclient.entity.WebSite;
 import com.zhangyingwei.miner.common.dao.ArticleDao;
-import com.zhangyingwei.miner.server.action.ArticleHandler;
+import com.zhangyingwei.miner.server.action.SArticleHandler;
 import com.zhangyingwei.miner.server.controller.SArticleController;
 import com.zhangyingwei.miner.server.controller.SServerController;
 import com.zhangyingwei.miner.server.controller.SWebSiteController;
@@ -38,8 +38,8 @@ public class BeanFactory{
 	public static SWebSiteController getSWebSiteController(){
 		return (SWebSiteController) getBean(SWebSiteController.class);
 	}
-	public static ArticleHandler getArticleHandler(){
-		return (ArticleHandler) getBean(ArticleHandler.class);
+	public static SArticleHandler getArticleHandler(){
+		return (SArticleHandler) getBean(SArticleHandler.class);
 	}
 	public static RssServer getRssServer(){
 		return (RssServer) getBean(RssServer.class);

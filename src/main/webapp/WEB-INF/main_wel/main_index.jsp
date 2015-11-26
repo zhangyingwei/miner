@@ -50,7 +50,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </script>
 </head>
 <body style="height:100%;">
-<form name="typeform" runat="server" style="height:100%">
+<form name="typeform" runat="server" style="height:60%">
     <div style="height:100%;">
     	<div id="typefield" style="text-align:center; padding:10%; height:100%;line-height:40px; font-size:20px; font-family: '微软雅黑'"></div>
 	    <div id="textfieldhtml" style="display:none">

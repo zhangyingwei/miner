@@ -3,7 +3,7 @@ package com.zhangyingwei.miner.wxclient.common;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.zhangyingwei.entity.WXInfo;
+import com.zhangyingwei.wxreader.entity.WXInfo;
 
 public class WXInfoPool {
 	
